@@ -1,4 +1,4 @@
-FROM maven:3.5-jdk-8 AS build
+FROM  maven:3.8.4-openjdk-11
         WORKDIR /usr/src/app
         COPY src ./src
         COPY pom.xml .
