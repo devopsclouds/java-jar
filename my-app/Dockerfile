@@ -7,4 +7,4 @@ FROM  maven:3.8.4-openjdk-11
 # Copy maven settings, containing repository configu/usr/src/app/target/rations
         COPY settings.xml /root/.m2
 
-        RUN mvn -s /root/.m2/settings.xml clean  sonar:sonar
+        RUN mvn -s /root/.m2/settings.xml clean  sonar:sonar -Dsonar.login=${sonartoken}
