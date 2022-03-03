@@ -7,7 +7,7 @@ FROM maven:3.5-jdk-8 AS build
 # Copy maven settings, containing repository configu/usr/src/app/target/rations
         COPY settings.xml /root/.m2
 
-        RUN mvn -s /root/.m2/settings.xml clean -Dmaven.test.skip=true package
+        RUN mvn -s /root/.m2/settings.xml clean  package
 
   FROM java:8-jdk-alpine
 
