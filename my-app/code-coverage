@@ -33,7 +33,7 @@ tools {
             steps {
             withSonarQubeEnv('sonarqube-token') {
             
-                sh 'mvn -f my-app/pom.xml verify sonar:sonar -Dsonar.projectKey=java-jar -Dsonar.login=sqp_b8330ece61eb27bf6204fdb812d36ada756a8629'
+                sh 'mvn -f my-app/pom.xml  sonar:sonar -Dsonar.projectKey=java-jar -Dsonar.login=sqp_b8330ece61eb27bf6204fdb812d36ada756a8629'
             
             }
             }
