@@ -32,7 +32,7 @@ tools {
             steps {
             withSonarQubeEnv('sonarqube-token') {
             
-                sh 'mvn sonar:sonar -Dsonar.projectKey=java-jar'
+                sh 'mvn -f my-app/pom.xml sonar:sonar -Dsonar.projectKey=java-jar'
             
             }
             }
@@ -48,7 +48,7 @@ tools {
         }
         stage('maven'){
             steps {
-                sh 'mvn clean package'
+                sh 'mvn -f my-app/pom.xml clean package'
             }
         }
     }
