@@ -23,7 +23,7 @@ tools {
         
         stage('maven'){
             steps {
-                sh 'mvn -f my-app/pom.xml clean  install'
+                sh 'mvn clean jacoco:prepare-agent install'
             }
         }
         
