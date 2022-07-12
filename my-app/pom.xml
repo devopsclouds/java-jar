@@ -12,7 +12,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.7</maven.compiler.source>
     <maven.compiler.target>1.7</maven.compiler.target>
-      <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../path_to_module_with_report/target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+   
 
     
  </properties>
@@ -25,7 +25,12 @@
       <scope>test</scope>
       </dependency>
     
-
+ <dependency>
+      <groupId>org.apache.maven.plugin-testing</groupId>
+      <artifactId>maven-plugin-testing-harness</artifactId>
+      <version>3.3.0</version>
+      <scope>test</scope>
+    </dependency>
  </dependencies>
 
   <build>
@@ -83,21 +88,34 @@
           <version>3.0.0</version>
   </plugin>
         
-      
-    <plugin>
+      <plugin>
       <groupId>org.jacoco</groupId>
       <artifactId>jacoco-maven-plugin</artifactId>
-      <executions>
-        <execution>
-          <id>report</id>
-          <goals>
-            <goal>report-aggregate</goal>
-          </goals>
-          <phase>verify</phase>
+      <version>0.8.3</version>
+        <executions>
+  	<execution>
+      	<id>prepare-agent</id>
+            <goals>
+             <goal>prepare-agent</goal>
+            </goals>
+            <configuration>
+<destFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</destFile>
+                <propertyName>surefireArgLine</propertyName>
+            </configuration>
+      </execution>
+      <execution>
+            <id>report</id>
+            <phase>test</phase>
+               <goals>
+               <goal>report</goal>
+               </goals>
+               <configuration>
+<dataFile>${project.build.directory}/coverage-reports/jacoco-ut.exec</dataFile>
+<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
+               </configuration>
         </execution>
-      </executions>
-    </plugin>
-        
+    </executions>
+      </plugin>
       </plugins>
     </pluginManagement>
   </build>
