@@ -26,6 +26,12 @@ tools {
             }
         }
         
+        stage('maven'){
+            steps {
+                sh 'mvn -f my-app/pom.xml clean package'
+            }
+        }
+        
          stage('sonarqubeanaylsis'){
             
             
@@ -46,10 +52,6 @@ tools {
                 }
             }
         }
-        stage('maven'){
-            steps {
-                sh 'mvn -f my-app/pom.xml clean package'
-            }
-        }
+        
     }
 }
