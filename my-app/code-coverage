@@ -1,9 +1,7 @@
 pipeline {
     agent any
 
-triggers {
-        pollSCM '* * * * *'
-    }
+
 
 tools {
     jdk 'java'
@@ -13,14 +11,10 @@ tools {
 
 
     stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
+        
         stage('git'){
             steps {
-                git branch: 'main', url: 'https://github.com/devopsclouds/java-jar.git'
+                git branch: 'sonar', url: 'https://github.com/devopsclouds/java-jar.git'
             }
         }
         
