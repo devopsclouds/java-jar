@@ -18,31 +18,6 @@ tools {
                 echo 'Hello World'
             }
         }
-        stage('git'){
-            steps {
-                git branch: 'main', url: 'https://github.com/devopsclouds/java-jar.git'
-            }
-        }
-        
-        stage('maven'){
-            steps {
-                sh 'mvn -f my-app/pom.xml clean install'
-            }
-        }
-        
-         stage('sonarqubeanaylsis'){
-            
-            
-            steps {
-            withSonarQubeEnv('sonarqube-token') {
-            withEnv(['SONAR_SCANNER_OPTS=-Dsvnkit.http.methods=Basic,Digest,Negotiate,NTLM']) {
-            
-                sh 'mvn -f my-app/pom.xml  sonar:sonar -Dsonar.projectKey=java-jar -Dsonar.login=sqp_b8330ece61eb27bf6204fdb812d36ada756a8629'
-            }
-            }
-            }
-        }
-        
         
     }
 }
