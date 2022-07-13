@@ -10,7 +10,7 @@ tools {
          
 
 
-    
+    stages { 
         stage('git'){
             steps {
                 git branch: 'develop', url: 'https://github.com/devopsclouds/java-jar.git'
